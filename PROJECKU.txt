@@ -1,0 +1,5 @@
+D4 -> RST
+D5 -> SDA
+D18 -> SCK
+D19 -> MISO
+D23 -> MOSI
