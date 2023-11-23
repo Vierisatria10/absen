@@ -71,6 +71,9 @@ if (isset($_GET['act']) && $_GET['act'] == 'hapusguru') {
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+	<link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -140,13 +143,13 @@ if (isset($_GET['act']) && $_GET['act'] == 'hapusguru') {
                                         <h3 class="card-title">Data Guru</h3>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <a href="#" class="breadcrumb-item" data-toggle="modal" data-target="#tambahGuruModal"><i class="fas fa-plus"></i> Tambah Guru</a>
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#tambahGuruModal"><i class="fas fa-plus"></i> Tambah Guru</a>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="card-body">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" id="tbl_guru">
                                     <thead>
                                     <tr>
                                         <th style="width: 10px">No.</th>
@@ -261,5 +264,20 @@ if (isset($_GET['act']) && $_GET['act'] == 'hapusguru') {
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script>
+	$('#tbl_guru').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,
+    });
+  </script>
 </body>
 </html>

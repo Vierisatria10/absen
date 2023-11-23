@@ -91,7 +91,7 @@ include('koneksi.php');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Data Laporan</title>
+  <title>Data Siswa</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -99,6 +99,9 @@ include('koneksi.php');
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -139,13 +142,16 @@ include('koneksi.php');
                       <h3 class="card-title">Data Siswa</h3>
                     </div>
                     <div class="col-md-6 text-right">
-                      <a href="#" class="breadcrumb-item" data-toggle="modal" data-target="#tambahsiswa">Tambah Siswa</a>
+                      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#tambahsiswa"><i class="fa fa-plus"></i> Tambah Siswa</a>
+					  <a href="#" class="btn btn-success" data-toggle="modal" data-target="#uploadexcel">
+						<i class="fa fa-print"></i> Export Siswa
+					  </a>
                     </div>
                   </div>
                 </div>
 
                 <div class="card-body overflow-auto">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered" id="tbl_siswa">
                     <thead>
                       <tr>
                         <th style="width: 10px;">No.</th>
@@ -168,7 +174,7 @@ include('koneksi.php');
                         while ($student = mysqli_fetch_assoc($result)) {
                           echo '<tr>';
                           echo '<td>' . $no . '</td>';
-                          echo '<td>' . $student['foto_siswa'] . '</td>';
+                          echo '<td>' . '<img src="img/."'  . '</td>';
 
                           echo '<td>' . $student['Nama_Siswa'] . '</td>';
                           echo '<td>' . $student['NIS'] . '</td>';
@@ -332,6 +338,21 @@ include('koneksi.php');
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.min.js"></script>
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script>
+	$('#tbl_siswa').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,
+    });
+  </script>
 </body>
 
 </html>

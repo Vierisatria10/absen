@@ -18,8 +18,7 @@ $jumlah = mysqli_num_rows($hasil);
 		$_SESSION["nama"]=$row["nama"];
 		$_SESSION["email"]=$row["email"];
 	
-
-		header("Location:dashboard.php");
+		echo '<script type="text/javascript">alert("Selamat Datang, Anda Berhasil Login Sebagai '.$_SESSION['nama'].'"); window.location.href="dashboard.php"</script>'; 
 		
 	}else {
 		echo "Username atau password salah <br><a href='login-v2.php'>Kembali</a>";

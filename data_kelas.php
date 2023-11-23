@@ -55,6 +55,9 @@ include('fungsi_kelas.php'); // Menggunakan fungsi-fungsi terkait data kelas
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -101,7 +104,7 @@ include('fungsi_kelas.php'); // Menggunakan fungsi-fungsi terkait data kelas
                   </div>
                 </div>
                 <div class="card-body">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered" id="tbl_kelas">
                     <thead>
                       <tr>
                         <th style="width: 10px">No.</th>
@@ -214,5 +217,20 @@ include('fungsi_kelas.php'); // Menggunakan fungsi-fungsi terkait data kelas
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script>
+	$('#tbl_kelas').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,
+    });
+  </script>
 </body>
 </html>
