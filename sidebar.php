@@ -16,7 +16,7 @@
                with font-awesome or any other icon font library -->
         <!-- dashboard -->
         <li class="nav-item">
-          <a href="index.php" class="nav-link">
+          <a href="index.php" class="nav-link active">
             <i class="nav-icon fas fa-home"></i>
             <p>
               Dashboard
@@ -77,6 +77,16 @@
             <i class="nav-icon fas fa-file-pdf"></i>
             <p>
               Laporan
+            </p>
+          </a>
+        </li>
+		
+		<!-- Logout -->
+		<li class="nav-item">
+          <a href="logout.php" onclick="return confirm('Apakah anda yakin ingin keluar ?')" class="nav-link">
+            <i class="nav-icon fa fa-sign-out-alt"></i>
+            <p>
+              Logout
             </p>
           </a>
         </li>

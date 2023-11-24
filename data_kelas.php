@@ -7,6 +7,16 @@ include('fungsi_kelas.php'); // Menggunakan fungsi-fungsi terkait data kelas
 
 ?>
 
+<?php
+
+  session_start();
+
+  if(!$_SESSION['id_user']){
+    header("location: login.php");
+  }
+
+?>
+
 <!-- modal insert -->
 <div class="example-modal">
   <div id="tambahkelas" class="modal fade" role="dialog" style="display:none;">
@@ -99,7 +109,7 @@ include('fungsi_kelas.php'); // Menggunakan fungsi-fungsi terkait data kelas
                       <h3 class="card-title">Data Kelas</h3>
                     </div>
                     <div class="col-md-6 text-right">
-                      <a href="#" class="breadcrumb-item" data-toggle="modal" data-target="#tambahkelas">Tambah Kelas</a>
+                      <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahkelas"><i class="fa fa-plus"></i> Tambah Kelas</a>
                     </div>
                   </div>
                 </div>
@@ -122,7 +132,7 @@ include('fungsi_kelas.php'); // Menggunakan fungsi-fungsi terkait data kelas
                         echo '<tr>';
                         echo '<td>' . $no . '</td>';
                         echo '<td>' . $kelas['Nama_Kelas'] . '</td>';
-                        echo '<td>' . $kelas['Nama_Guru'] . '</td>';
+                        echo '<td>' . $kelas['Nama_Wali_Kelas'] . '</td>';
                         echo '<td>
               <a href="#" class="btn btn-warning btn-flat btn-xs" data-toggle="modal" data-target="#ubahkelas' . $no . '"><i class="fa fa-pen"></i> Ubah</a> | 
               <a href="#" class="btn btn-danger btn-flat btn-xs" data-toggle="modal" data-target="#hapuskelas' . $no . '"><i class="fa fa-trash"></i> Hapus</a>
@@ -168,8 +178,21 @@ include('fungsi_kelas.php'); // Menggunakan fungsi-fungsi terkait data kelas
                         echo '<input type="text" class="form-control" name="nama_kelas" placeholder="Nama Kelas" value="' . $kelas['Nama_Kelas'] . '">';
                         echo '</div>';
                         echo '<div class="form-group">';
-                        echo '<label class="control-label">ID Wali Kelas<span class="text-red">*</span></label>';
-                        echo '<input type="text" class="form-control" name="id_wali_kelas" placeholder="ID Wali Kelas" value="' . $kelas['ID_Wali_Kelas'] . '">';
+                        echo '<label class="control-label">Wali Kelas<span class="text-red">*</span></label>';
+						echo '<select name="id_wali_kelas" class="form-control">';
+                        echo '<option value="">-- Pilih Wali Kelas --</option>';
+
+                          // Mendapatkan daftar kelas dari database
+                          $query_guru = "SELECT ID_Guru, Nama_Guru FROM guru";
+                          $result_guru = mysqli_query($conn, $query_guru);
+
+                          while ($row_guru = mysqli_fetch_assoc($result_guru)) {
+                            // Jika kelas pada data siswa cocok dengan kelas pada daftar, tandai sebagai terpilih
+                            $selected = ($kelas['ID_Wali_Kelas'] == $row_guru['ID_Guru']) ? 'selected' : '';
+                            echo '<option value="' . $row_guru['ID_Guru'] . '" ' . $selected . '>' . $row_guru['Nama_Guru'] . '</option>';
+                          }
+
+                        echo '</select>';
                         echo '</div>';
                         echo '<div class="modal-footer">';
                         echo '<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Batal</button>';

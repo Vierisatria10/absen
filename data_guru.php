@@ -56,6 +56,12 @@ if (isset($_GET['act']) && $_GET['act'] == 'hapusguru') {
         }
     }
 }
+
+  session_start();
+
+  if(!$_SESSION['id_user']){
+    header("location: login.php");
+  }
 ?>
 
 <!DOCTYPE html>
@@ -143,7 +149,7 @@ if (isset($_GET['act']) && $_GET['act'] == 'hapusguru') {
                                         <h3 class="card-title">Data Guru</h3>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#tambahGuruModal"><i class="fas fa-plus"></i> Tambah Guru</a>
+                                        <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahGuruModal"><i class="fas fa-plus"></i> Tambah Guru</a>
                                     </div>
                                 </div>
                             </div>

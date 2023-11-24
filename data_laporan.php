@@ -1,3 +1,13 @@
+<?php
+
+  session_start();
+
+  if(!$_SESSION['id_user']){
+    header("location: login.php");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +22,9 @@
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+	<link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <style>
         table {
             border-collapse: collapse;
@@ -136,6 +149,7 @@
                                             ?>
                                         </div>
                                         <div class="col-md-6 text-right">
+											<a href="cetak_laporan.php" class="btn btn-danger" target="_blank"><i class="fa fa-print"></i> Cetak Laporan</a>
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +179,7 @@
                                     // Menghitung jumlah hari dalam bulan ini
                                     $daysInMonth = date('t');
 
-                                    echo '<table class="table table-bordered">';
+                                    echo '<table class="table table-bordered" id="tbl_laporan">';
                                     echo '<thead>';
                                     echo '<tr>';
                                     echo '<th rowspan="2">#</th>';
@@ -329,6 +343,21 @@
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
+	<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+	<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+	<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+	<script>
+		$('#tbl_kelas').DataTable({
+		  "paging": true,
+		  "lengthChange": true,
+		  "searching": true,
+		  "ordering": true,
+		  "info": true,
+		  "autoWidth": true,
+		  "responsive": true,
+		});
+	</script>
 </body>
 
 </html>

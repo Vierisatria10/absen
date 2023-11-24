@@ -6,6 +6,12 @@ include('koneksi.php');
 
 // ... (kode lainnya)
 
+  session_start();
+
+  if(!$_SESSION['id_user']){
+    header("location: login.php");
+  }
+
 ?>
 
 <!-- modal insert -->
@@ -142,8 +148,8 @@ include('koneksi.php');
                       <h3 class="card-title">Data Siswa</h3>
                     </div>
                     <div class="col-md-6 text-right">
-                      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#tambahsiswa"><i class="fa fa-plus"></i> Tambah Siswa</a>
-					  <a href="#" class="btn btn-success" data-toggle="modal" data-target="#uploadexcel">
+                      <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahsiswa"><i class="fa fa-plus"></i> Tambah Siswa</a>
+					  <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uploadexcel">
 						<i class="fa fa-print"></i> Export Siswa
 					  </a>
                     </div>
@@ -174,7 +180,7 @@ include('koneksi.php');
                         while ($student = mysqli_fetch_assoc($result)) {
                           echo '<tr>';
                           echo '<td>' . $no . '</td>';
-                          echo '<td>' . '<img src="img/."'  . '</td>';
+                          echo '<td>' . '<img src="img/'.$student['foto_siswa'].'" width="100px">' .'</td>';
 
                           echo '<td>' . $student['Nama_Siswa'] . '</td>';
                           echo '<td>' . $student['NIS'] . '</td>';
